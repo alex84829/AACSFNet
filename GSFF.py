@@ -1,4 +1,3 @@
-#dlib模型和diffusers批量生成
 import torch
 import cv2
 import dlib
