@@ -24,6 +24,11 @@ Installation
 1) Clone the repository:<br />
 ```git clone https://github.com/alex84829/AACSFNet.git``` <br /><br />
 
-2. Install the required dependencies<sup>*</sup>:<br />
-```pip install -r AACSFNet/requirement_AACSFNet.txt``` 
+2) Install the required dependencies<sup>*</sup>:<br />
+```pip install -r AACSFNet/requirement_AACSFNet.txt```
 
+Run training
+Run the following command to train the model.
+```bash
+python D:\pythonproject\AACSFNet\main_AACSFNet.py
+```
