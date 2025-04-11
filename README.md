@@ -32,3 +32,7 @@ Run the following command to train the model.
 ```bash
 python D:\pythonproject\AACSFNet\main_AACSFNet.py
 ```
+
+## Acknowledgement
+
+This research was supported by TCI science and technology innovation fund.
