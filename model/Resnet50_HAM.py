@@ -41,11 +41,11 @@ class SpatialAttention(nn.Module):
         self.sigmoid = nn.Sigmoid()
 
     def forward(self, x):
-        avg_out = torch.mean(x, dim=1, keepdim=True)  # 平均池化
-        max_out, _ = torch.max(x, dim=1, keepdim=True)  # 最大池化
+        avg_out = torch.mean(x, dim=1, keepdim=True) 
+        max_out, _ = torch.max(x, dim=1, keepdim=True)
         x = torch.cat([avg_out, max_out], dim=1)  # 拼接两个池化结果
-        x = self.conv1(x)  # 卷积操作
-        return self.sigmoid(x)  # Sigmoid激活
+        x = self.conv1(x)  
+        return self.sigmoid(x) 
 
 
 class ChannelAttention(nn.Module):
