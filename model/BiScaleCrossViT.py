@@ -202,9 +202,6 @@ class BiscaleCrossVitnet(nn.Module):
         depth=3,
         embed_dim=192)
 
-    # ------------------------------#
-    # resnet50的前向传播函数
-    # ------------------------------#
     def forward(self, x):
         x = self.MultiScaleVisionTransformer(x)
 
