@@ -18,4 +18,5 @@ The Attention-Aware Channel-Spatial Fusion Network (AACSFNet) comprises three ke
 Data
 
 1) data_pre available [here](data_pre.rar: https://pan.baidu.com/s/19OTHCSuixFSAOIqX9uhG6Q?pwd=rdr5    Extracted code: rdr5).
+2) Update *path* in the file *data/data_pre* to the path of your dataset.
 
