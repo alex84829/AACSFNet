@@ -101,13 +101,13 @@ class DimReduction(nn.Module):
         super().__init__()
         self.fc = nn.Sequential(
             nn.Linear(512, 256),
-            nn.BatchNorm1d(256),  # 加速收敛，稳定训练
-            nn.ReLU(inplace=True),  # 引入非线性
-            nn.Dropout(0.1),  # 防止过拟合
+            nn.BatchNorm1d(256),  
+            nn.ReLU(inplace=True), 
+            nn.Dropout(0.1), 
             nn.Linear(256, 128),
-            nn.BatchNorm1d(128),  # 加速收敛，稳定训练
-            nn.ReLU(inplace=True),  # 引入非线性
-            nn.Dropout(0.1),  # 防止过拟合
+            nn.BatchNorm1d(128), 
+            nn.ReLU(inplace=True),  
+            nn.Dropout(0.1), 
             nn.Linear(128, 16)
         )
 
@@ -115,12 +115,7 @@ class DimReduction(nn.Module):
         return self.fc(x)
 
 
-# --------------------------------#
-# 此为resnet50网络的定义
-# input的大小为224*224
-# 初始化函数中的block即为上面定义的
-# 标准残差结构--Bottleneck
-# --------------------------------#
+
 class ResNet(nn.Module):
     def __init__(self):
         super(ResNet, self).__init__()
@@ -163,9 +158,6 @@ class ResNet(nn.Module):
         self.pool = nn.AdaptiveAvgPool1d(1)
 
 
-    # ------------------------------#
-    # resnet50的前向传播函数
-    # ------------------------------#
     def forward(self, x):
         x1 = x
         x1 = self.resnet50_modified(x1)
