@@ -33,6 +33,33 @@ import torch.nn as nn
 import torch.nn.functional as F
 
 
+class PatchEmbedding(nn.Module):
+    def __init__(self, img_size=224, patch_size=16, in_channels=3, embed_dim=768):
+        super().__init__()
+        self.img_size = img_size
+        self.patch_size = patch_size
+        self.n_patches = (img_size // patch_size) ** 2
+        self.proj = nn.Conv2d(in_channels, embed_dim, kernel_size=patch_size, stride=patch_size)
+
+    def forward(self, x):
+        x = self.proj(x)
+        x = x.flatten(2)
+        x = x.transpose(1, 2)
+        return x
+
+class TransformerBlock(nn.Module):
+    def __init__(self, embed_dim=768, num_heads=6, mlp_ratio=4.0, dropout=0.1):
+        super().__init__()
+        self.norm1 = nn.LayerNorm(embed_dim)
+        self.attn = MultiHeadAttention(embed_dim, num_heads, dropout)
+        self.norm2 = nn.LayerNorm(embed_dim)
+        self.mlp = MLP(embed_dim, int(embed_dim * mlp_ratio), dropout)
+
+    def forward(self, x):
+        x = x + self.attn(self.norm1(x))
+        x = x + self.mlp(self.norm2(x))
+        return x
+
 class CrossAttention(nn.Module):
     def __init__(self, embed_dim=768, num_heads=6, dropout=0.1):
         super().__init__()
@@ -66,19 +93,6 @@ class CrossAttention(nn.Module):
         x = self.proj_dropout(x)
         return x
 
-class PatchEmbedding(nn.Module):
-    def __init__(self, img_size=224, patch_size=16, in_channels=3, embed_dim=768):
-        super().__init__()
-        self.img_size = img_size
-        self.patch_size = patch_size
-        self.n_patches = (img_size // patch_size) ** 2
-        self.proj = nn.Conv2d(in_channels, embed_dim, kernel_size=patch_size, stride=patch_size)
-
-    def forward(self, x):
-        x = self.proj(x)
-        x = x.flatten(2)
-        x = x.transpose(1, 2)
-        return x
 
 class MultiHeadAttention(nn.Module):
     def __init__(self, embed_dim=768, num_heads=6, dropout=0.1):
@@ -119,18 +133,6 @@ class MLP(nn.Module):
         x = self.dropout(x)
         return x
 
-class TransformerBlock(nn.Module):
-    def __init__(self, embed_dim=768, num_heads=6, mlp_ratio=4.0, dropout=0.1):
-        super().__init__()
-        self.norm1 = nn.LayerNorm(embed_dim)
-        self.attn = MultiHeadAttention(embed_dim, num_heads, dropout)
-        self.norm2 = nn.LayerNorm(embed_dim)
-        self.mlp = MLP(embed_dim, int(embed_dim * mlp_ratio), dropout)
-
-    def forward(self, x):
-        x = x + self.attn(self.norm1(x))
-        x = x + self.mlp(self.norm2(x))
-        return x
 
 class MultiScaleVisionTransformer(nn.Module):
     def __init__(self, img_size=224, patch_sizes=[32, 16], in_channels=3, num_classes=1,  # 修改默认值
