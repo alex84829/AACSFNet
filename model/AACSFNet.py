@@ -110,6 +110,20 @@ class PatchEmbedding(nn.Module):
         x = x.transpose(1, 2)
         return x
 
+
+class TransformerBlock(nn.Module):
+    def __init__(self, embed_dim=768, num_heads=6, mlp_ratio=4.0, dropout=0.1):
+        super().__init__()
+        self.norm1 = nn.LayerNorm(embed_dim)
+        self.attn = MultiHeadAttention(embed_dim, num_heads, dropout)
+        self.norm2 = nn.LayerNorm(embed_dim)
+        self.mlp = MLP(embed_dim, int(embed_dim * mlp_ratio), dropout)
+
+    def forward(self, x):
+        x = x + self.attn(self.norm1(x))
+        x = x + self.mlp(self.norm2(x))
+        return x
+
 class CrossAttention(nn.Module):
     def __init__(self, embed_dim=768, num_heads=6, dropout=0.1):
         super().__init__()
@@ -183,18 +197,6 @@ class MLP(nn.Module):
         x = self.dropout(x)
         return x
 
-class TransformerBlock(nn.Module):
-    def __init__(self, embed_dim=768, num_heads=6, mlp_ratio=4.0, dropout=0.1):
-        super().__init__()
-        self.norm1 = nn.LayerNorm(embed_dim)
-        self.attn = MultiHeadAttention(embed_dim, num_heads, dropout)
-        self.norm2 = nn.LayerNorm(embed_dim)
-        self.mlp = MLP(embed_dim, int(embed_dim * mlp_ratio), dropout)
-
-    def forward(self, x):
-        x = x + self.attn(self.norm1(x))
-        x = x + self.mlp(self.norm2(x))
-        return x
 
 class BiScaleCrossViT(nn.Module):
     def __init__(self, img_size=224, patch_sizes=[32, 16, 8], in_channels=3, num_classes=1000,
