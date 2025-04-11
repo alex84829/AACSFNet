@@ -35,11 +35,11 @@ class SpatialAttention(nn.Module):
         self.sigmoid = nn.Sigmoid()
 
     def forward(self, x):
-        avg_out = torch.mean(x, dim=1, keepdim=True)  # 平均池化
-        max_out, _ = torch.max(x, dim=1, keepdim=True)  # 最大池化
-        x = torch.cat([avg_out, max_out], dim=1)  # 拼接两个池化结果
-        x = self.conv1(x)  # 卷积操作
-        return self.sigmoid(x)  # Sigmoid激活
+        avg_out = torch.mean(x, dim=1, keepdim=True)  
+        max_out, _ = torch.max(x, dim=1, keepdim=True)  
+        x = torch.cat([avg_out, max_out], dim=1)  
+        x = self.conv1(x) 
+        return self.sigmoid(x)  
 
 
 class ChannelAttention(nn.Module):
@@ -55,7 +55,7 @@ class ChannelAttention(nn.Module):
 
     def forward(self, x):
         b, c, _, _ = x.size()
-        avg_out = self.fc(self.avg_pool(x).view(b, c))  # 全局平均池化后通过全连接层
+        avg_out = self.fc(self.avg_pool(x).view(b, c))  
         return avg_out.view(b, c, 1, 1)  # 调整形状
 
 d_model=49
@@ -71,7 +71,7 @@ class TransformerEncorder(nn.Module):
                                     num_encoder_layers=num_encoder_layers)
 
     def forward(self, xb):
-        xb = self.trans.encoder(xb)  # 编码器部分
+        xb = self.trans.encoder(xb)  
 
         return xb
 
@@ -265,7 +265,7 @@ class TransformerEncorder_Fuse(nn.Module):
                                     num_encoder_layers=num_encoder_layers)
 
     def forward(self, xb):
-        xb = self.trans.encoder(xb)  # 编码器部分
+        xb = self.trans.encoder(xb) 
         return xb
 
 class DimReduction(nn.Module):
