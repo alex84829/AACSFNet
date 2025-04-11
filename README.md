@@ -6,7 +6,7 @@ The AACSFNet comprises a channel sub-network and a spatial sub-network for featu
 
 ## Overall Pipeline
 
-![architecture](./img/method.png)
+![architecture](./img/Figure 1.png)
 
 1) fMRI images parcellated by an atlas to obtain the Functional connectivity matrix for ’N’ ROIs. Rows and columns are rearranged based on community labels of
 each ROI to obtain input matrices to local transformer
