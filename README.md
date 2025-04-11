@@ -13,8 +13,7 @@ The Attention-Aware Channel-Spatial Fusion Network (AACSFNet) comprises three ke
 2) Spatial-subnet (BiScaleCrossViT): A multi-granularity vision transformer with dual-path cross-attention for capturing transient local features and global contextual patterns.
 3) The feature fusion block then aligns and integrates their outputs through multi-head attention and residual connections, enabling the model to synthesize discriminative representations for accurate pain intensity regression.  
 
-## Quick Start Guide <a name="Quick Start Guide"></a>
-How to train AACSFNet.
+## Usage
 
-Installation
+data_pre available [here](data_pre.rar: https://pan.baidu.com/s/19OTHCSuixFSAOIqX9uhG6Q?pwd=rdr5    Extracted code: rdr5).
 
