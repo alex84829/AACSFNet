@@ -202,10 +202,8 @@ def train(person=0):
                 'epoch': e,
             }
 
-            opt.experiment_path = "D:\\pythonproject\\painfull go\\test\\train_resnet50_cbam"
-            opt.log_dir_name = "D:\\pythonproject\\painfull go\\test\\train_resnet50_cbam\\checkpoints"
-            # opt.experiment_path = "D:\\pythonproject\\painfull go\\test\\train_AACSFNet"
-            # opt.log_dir_name = "D:\\pythonproject\\painfull go\\test\\train_AACSFNet\\checkpoints"
+            opt.experiment_path = "D:\\pythonproject\\painfull go\\test\\train_AACSFNet"
+            opt.log_dir_name = "D:\\pythonproject\\painfull go\\test\\train_AACSFNet\\checkpoints"
             save_path = os.path.join(opt.experiment_path, opt.model_dir_name, opt.version)
             if os.path.exists(save_path) is False:
                 os.mkdir(save_path)
