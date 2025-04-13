@@ -180,10 +180,8 @@ def train(person=0):
                    MAE, MSE, PCC,
                    clk, consuming / 60.0))
 
-            opt.experiment_path = "D:\\pythonproject\\painfull go\\test\\train_resnet50_cbam"
-            opt.log_dir_name = "D:\\pythonproject\\painfull go\\test\\train_resnet50_cbam\\checkpoints"
-            # opt.experiment_path = "D:\\pythonproject\\painfull go\\test\\train_AACSFNet"
-            # opt.log_dir_name = "D:\\pythonproject\\painfull go\\test\\train_AACSFNet\\checkpoints"
+            opt.experiment_path = "D:\\pythonproject\\painfull go\\test\\train_AACSFNet"
+            opt.log_dir_name = "D:\\pythonproject\\painfull go\\test\\train_AACSFNet\\checkpoints"
             with open(os.path.join(opt.experiment_path, opt.log_dir_name, '{}_log.txt'.format(opt.version)), 'a+') as f:
                 f.write(
                     '[person / epoch =  {:0>2d} / {:0>3d}] '
