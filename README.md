@@ -36,8 +36,11 @@ python D:\pythonproject\AACSFNet\main_AACSFNet.py
 
 @article{AACSFNet,
   title={Enhancing Pain Intensity Evaluation via an Attention-Driven Channel-Spatial Fusion Network},
+  
   author={Feng Gao , Linbo Qing , Lindong Li , Ge Yang , Risheng Xu , Li Gao},
+  
   journal={The Visual Computer},
+  
 }
 
 ## Acknowledgement
