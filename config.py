@@ -26,8 +26,8 @@ def parse_args():
     # ------------------------------------------------------
     # ---------- Optimization options ----------------------
     # ------------------------------------------------------
-    parser.add_argument('--lr', type=float, default=0.04)  #lr从0.01调整到0.08（0.08部分效果不错），再调整到0.04
-    parser.add_argument('--lr2', type=float, default=0.002, help='initial learning rate')  #lr2 从0.0005调整到 0.002（部分效果不错），再调整到0.001
+    parser.add_argument('--lr', type=float, default=0.04)  
+    parser.add_argument('--lr2', type=float, default=0.002, help='initial learning rate')  
 
     parser.add_argument('--lamda_act', type=float, default=0.5) #dropout从0.5--0.4
 
